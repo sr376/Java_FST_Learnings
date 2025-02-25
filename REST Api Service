@@ -1,0 +1,87 @@
+Alien Resource.java
+
+
+package com.telusko.demorest;  // 1. Defines the package name for organizing classes.
+
+import javax.ws.rs.GET;       // 2. Imports the `GET` annotation from JAX-RS for HTTP GET requests.
+import javax.ws.rs.Path;      // 3. Imports the `Path` annotation to define the resource path.
+import javax.ws.rs.Produces;  // 4. Imports the `Produces` annotation to specify the response media type.
+import javax.ws.rs.core.MediaType; // 5. Imports `MediaType` for defining response format types.
+
+@Path("aliens") // 6. Specifies the base URI path as "aliens" for this resource.
+public class AlienResource { // 7. Declares the `AlienResource` class, which acts as a JAX-RS resource.
+
+    @GET // 8. Marks this method to handle HTTP GET requests.
+    @Produces(MediaType.APPLICATION_XML) // 9. Specifies that the method produces an XML response.
+    public Alien getAlien() { // 10. Defines the `getAlien` method that returns an `Alien` object.
+
+        System.out.println("getAlien called..."); // 11. Prints a message to the console when the method is invoked.
+
+        Alien a1 = new Alien(); // 12. Creates an instance of the `Alien` class.
+        a1.setName("Navin"); // 13. Sets the name of the `Alien` object.
+        a1.setPoints(60); // 14. Sets the points for the `Alien` object.
+
+        return a1; // 15. Returns the `Alien` object as the response in XML format.
+    }
+}
+
+This code is part of a RESTful web service built using JAX-RS (Java API for RESTful Web Services). It defines an API endpoint (/aliens) that returns an XML response when accessed via an HTTP GET request. Here's what happens step by step:
+
+1. A Client Makes a GET Request
+A client (such as a browser, Postman, or a JavaScript frontend) sends an HTTP GET request to:
+
+
+http://localhost:8080/demorest/webapi/aliens
+Assuming this RESTful service is running on Tomcat or any Java server.
+"demorest" is the project name, and "webapi" is the API base path.
+2. The Request is Routed to AlienResource
+Since the class is annotated with @Path("aliens"), JAX-RS recognizes this class as handling requests to /aliens.
+
+3. The getAlien() Method is Invoked
+The @GET annotation tells the server that this method should handle GET requests.
+The method execution starts, and the following happens:
+java
+Copy
+Edit
+System.out.println("getAlien called...");
+This prints "getAlien called..." on the server console for debugging purposes.
+4. An Alien Object is Created and Populated
+A new Alien object (a1) is instantiated:
+java
+Copy
+Edit
+Alien a1 = new Alien();
+The object properties are set:
+java
+Copy
+Edit
+a1.setName(" Navin");
+a1.setPoints(60);
+5. The Object is Converted to XML Format
+The method returns the Alien object:
+java
+Copy
+Edit
+return a1;
+The @Produces(MediaType.APPLICATION_XML) annotation ensures that JAX-RS converts this Java object into XML before sending it as a response.
+6. The Client Receives an XML Response
+The converted response looks like this:
+
+xml
+Copy
+Edit
+<alien>
+    <name>Navin</name>
+    <points>60</points>
+</alien>
+This is what the client (browser, Postman, or frontend app) receives.
+
+Final Flow:
+Client sends a GET request to /aliens.
+Server routes the request to AlienResource.getAlien().
+getAlien() method executes:
+Prints "getAlien called..." in the console.
+Creates and populates an Alien object.
+JAX-RS converts the Alien object into XML format.
+XML response is sent back to the client.
+This is how a simple RESTful API works in Java using JAX-RS.
