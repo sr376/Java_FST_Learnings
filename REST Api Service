@@ -85,3 +85,32 @@ Creates and populates an Alien object.
 JAX-RS converts the Alien object into XML format.
 XML response is sent back to the client.
 This is how a simple RESTful API works in Java using JAX-RS.
+
+
+Alien.java
+package com.telusko.demorest;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Alien {
+
+    private String name;
+    private int points;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points; // Fixed syntax error
+    }
+}
