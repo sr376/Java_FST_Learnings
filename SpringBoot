@@ -30,3 +30,65 @@ public class FirstprojApplication {
         obj.code();
     }
 }
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+These import required Spring Boot classes:
+
+Import	Purpose
+SpringApplication	Used to start the Spring Boot application.
+@SpringBootApplication	Enables auto-configuration, component scanning, and Spring Boot configuration.
+ApplicationContext	Manages Spring Beans (Spring container).
+
+@SpringBootApplication
+public class FirstprojApplication {
+Defines the main class FirstprojApplication, which will start the application.
+@SpringBootApplication is a meta-annotation that includes:
+@Configuration → Marks this class as a configuration class.
+@EnableAutoConfiguration → Enables automatic Spring Boot configurations.
+@ComponentScan → Scans for Spring-managed components (@Component, @Service, @Repository, @Controller).
+
+ApplicationContext context = SpringApplication.run(FirstprojApplication.class, args);
+What Happens Here?
+SpringApplication.run(...) starts the Spring Boot application.
+It creates and initializes the Spring container (ApplicationContext), which:
+Scans for all Spring components (@Component) in the project.
+Creates objects (beans) for those components and manages their lifecycle.
+Performs dependency injection if needed.
+Returns an ApplicationContext object, which acts as the Spring container.
+6️⃣ Getting a Spring Bean
+
+Alien obj = context.getBean(Alien.class);
+Retrieves an instance of the Alien class from the Spring container.
+context.getBean(Alien.class):
+Looks for a class annotated with @Component, @Service, @Repository, or @Controller.
+If Alien is marked with @Component, Spring creates an object and returns it.
+This avoids using new Alien(); manually, allowing Spring to manage dependencies.
+7️⃣ Calling a Method on the Bean
+
+obj.code();
+Calls the code() method on the Alien object.
+If Alien is implemented like this:
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Alien {
+    public void code() {
+        System.out.println("I'm Coding...");
+    }
+}
+Spring creates and manages an object of Alien.
+The program prints:
+
+I'm Coding...
+🔄 Complete Flow of Execution
+Spring Boot Application Starts
+SpringApplication.run() initializes Spring Boot and Spring Container (ApplicationContext).
+Spring Scans for Components
+Finds @Component classes (like Alien) and creates their objects (Beans).
+Retrieves a Bean
+context.getBean(Alien.class) fetches the Alien object from the Spring Container.
+Calls code() Method
+obj.code(); runs the method, printing "I'm Coding...".
