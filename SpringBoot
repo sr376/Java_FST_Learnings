@@ -92,3 +92,11 @@ Retrieves a Bean
 context.getBean(Alien.class) fetches the Alien object from the Spring Container.
 Calls code() Method
 obj.code(); runs the method, printing "I'm Coding...".
+
+Why Use context.getBean(Alien.class); Instead of new Alien();?
+Feature	new Alien(); (Manual)	context.getBean(Alien.class); (Spring)
+Dependency Injection	❌ Not possible	✅ Injects dependencies automatically
+Singleton Scope	❌ New object every time	✅ One shared instance (Singleton by default)
+Lifecycle Management	❌ No lifecycle management	✅ Handles initialization & destruction
+Testing & Mocking	❌ Hard to mock	✅ Supports Spring mock testing
+
