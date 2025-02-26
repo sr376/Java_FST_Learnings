@@ -12,6 +12,41 @@ public class Alien {
     }
 }
 
+package com.telusko.first;
+Declares the package com.telusko.first, which is like a folder structure in your project.
+Helps in organizing the code and avoiding name conflicts with other classes.
+
+import org.springframework.stereotype.Component;
+Imports the @Component annotation from the Spring Framework.
+@Component is a Spring-managed annotation that tells Spring to automatically detect and register this class as a bean.
+
+@Component
+Marks this class as a Spring-managed bean.
+When Spring scans the project, it will automatically create an instance of Alien and manage it in the Spring container.
+Now, we can retrieve the Alien object using:
+
+ApplicationContext context = SpringApplication.run(FirstprojApplication.class, args);
+Alien obj = context.getBean(Alien.class);
+If @Component is missing, context.getBean(Alien.class) will not work.
+
+public class Alien {
+Declares a public class named Alien.
+This class can be used anywhere in the project.
+
+public void code() {
+Defines a method named code() that does not return anything (void).
+
+System.out.println("I'm Coding..");
+Prints "I'm Coding.." to the console when the code() method is executed.
+🔄 Complete Flow of Execution
+Spring scans the package and finds @Component on Alien, so it registers it as a bean.
+In FirstprojApplication.java, we request the Alien bean using:
+
+Alien obj = context.getBean(Alien.class);
+Spring retrieves the existing Alien object instead of creating a new one.
+The method obj.code(); is called, and "I'm Coding.." is printed.
+
+
 
 FirstApp.java
 package com.telusko.first;
@@ -30,6 +65,9 @@ public class FirstprojApplication {
         obj.code();
     }
 }
+
+
+FirstApplication.java
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
