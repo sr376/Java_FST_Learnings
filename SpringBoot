@@ -138,3 +138,15 @@ Singleton Scope	❌ New object every time	✅ One shared instance (Singleton by 
 Lifecycle Management	❌ No lifecycle management	✅ Handles initialization & destruction
 Testing & Mocking	❌ Hard to mock	✅ Supports Spring mock testing
 
+Laptop.java
+
+package com.telsuko.first;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Laptop{
+    public void compile(){
+        System.out.println("compiling");
+    }
+}
+
