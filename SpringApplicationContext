@@ -21,10 +21,10 @@ Instead of using BeanFactory we are using Application context because as per evo
 package com.telsuko.SpringDemo;
 
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.beans.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.FilesSystemResource;
+///import org.springframework.beans.factory.xml.XmlBeanFactory;
+///import org.springframework.beans.context.ApplicationContext;
+///import org.springframework.context.support.ClassPathXmlApplicationContext;
+///import org.springframework.core.io.FilesSystemResource;
 
 public class App{
   publicx static void main(String[] args){
@@ -72,5 +72,49 @@ public class Alien{
     System.out.println("Im coding..");
   }
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////// If we wat to print using getAge
+<bean id="alien" class="com.telsuko.springDemo.Alien">
+  <property name="age" value="10"></property>
+</bean>
+
+Alien.java : 
+
+Alien.java :
+
+package com.telsuko.SpringDemo;
+public class Alien{
+  private int age;
+  public Alien(){
+    System.out.println("Alien Object Created..");
+  }
+  public int getAge(){
+    return age;
+  }
+  public void setAge(int age){
+    System.out.println("Age Assigned");
+    this.age=age;
+  }
+
+  public void code(){
+    System.out.println("Im coding..");
+  }
+}
+
+package com.telsuko.SpringDemo;
+
+import org.springframework.beans.factory.BeanFactory;
 
 
+public class App{
+  publicx static void main(String[] args){
+   // BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
+    ApplicationContext factory = new ClassPathXmlApplicationContext("spring.xml");
+  
+    Alien obj1 = (Alien)factory.getBean("alien");
+    obj1.code();
+   
+    System.out.println(obj1.getAge);
+
+    
+  }
+}
