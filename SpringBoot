@@ -150,3 +150,4 @@ public class Laptop{
     }
 }
 
+Explanation : we are not creating object of the laptop it is managed by springBoot App.
