@@ -151,3 +151,18 @@ public class Laptop{
 }
 
 Explanation : we are not creating object of the laptop it is managed by springBoot App.
+
+Alien.java
+package com.telusko.first;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Alien {
+    @Autowired
+    Laptop lap;
+
+    public void code() {
+        lap.compile();
+    }
+}
