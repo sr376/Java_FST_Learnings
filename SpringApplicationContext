@@ -1,0 +1,76 @@
+package com.telsuko.SpringDemo;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.FilesSystemResource;
+
+public class App{
+  publicx static void main(String[] args){
+    BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
+    Alien obj = (Alien)factory.getBean("alien");
+    obj.code();
+  }
+}
+
+Spring.xml
+
+<bean id="alien" class="com.telusko.SpringDemo.Alien"><?bean>
+
+Instead of using BeanFactory we are using Application context because as per evolution many methods are evolved, these methods are not available in BeanFactory
+
+package com.telsuko.SpringDemo;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.beans.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.FilesSystemResource;
+
+public class App{
+  publicx static void main(String[] args){
+   // BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
+    ApplicationContext factory = new ClassPathXmlApplicationContext("spring.xml");
+    Alien obj1 = (Alien)factory.getBean("alien");
+    obj1.code();
+    obj1.age = 15;
+    System.out.println(obj1.age);
+
+    Alien obj2 = (Alien)factory.getBean("alien");
+    obj2.code();
+   
+    System.out.println(obj2.age);
+
+    
+    Alien obj = (Alien)factory.getBean("alien");
+    obj.code();
+  }
+}
+
+Spring.xml : <bean id="alien" class="com.telsuko.springDemo.Alien"></bean>
+
+output: 15
+        15
+
+Because it is singleton.
+if you create many objects but still it would refer out to the only one object in the jvm .
+
+for Prototype
+spring.xml : <bean id="alien" class="com.telsuko.springDemo.Alien" scope="Prototype"></bean>
+
+output : 15
+          0
+
+Alien.java :
+
+package com.telsuko.SpringDemo;
+public class Alien{
+  int age;
+  public Alien(){
+    System.out.println("Alien Object Created..");
+  }
+  public void code(){
+    System.out.println("Im coding..");
+  }
+}
+
+
