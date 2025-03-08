@@ -3,6 +3,10 @@
   <property name="laptop" ref="laptop"></property>
 </bean>
 
+<bean id="laptop" class="com.telsuko.SpringDemo.Laptop">
+</bean>
+
+
 <bean id="laptop" class="com.telsuko.springDemo.Alien"
 
 if you have a class we have to create a bean for this class also.
