@@ -1,0 +1,29 @@
+<bean id="alien" class="com.telsuko.springDemo.Alien">
+  <property name="age" value="10"></property>
+  <property name="laptop" ref="laptop"></property>
+</bean>
+
+<bean id="laptop" class="com.telsuko.springDemo.Alien"
+
+if you have a class we have to create a bean for this class also.
+
+Laptop.java
+
+package com.telsuko.SpringDemo;
+pulic class Laptop{
+  public void compile(){
+    System.out.println("code compiled");
+  }
+}
+
+Alien.java ::
+ private Laptop laptop;
+ getters and setters
+public void code(){
+  System.out.println("Im coding");
+  laptop.compile();
+}
+
+App.java
+
+Same
