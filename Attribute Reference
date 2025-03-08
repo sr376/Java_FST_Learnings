@@ -21,12 +21,31 @@ pulic class Laptop{
 }
 
 Alien.java ::
- private Laptop laptop;
- getters and setters
-public void code(){
-  System.out.println("Im coding");
-  laptop.compile();
+
+package com.telsuko.SpringDemo;
+public class Alien{
+  private Laptop laptop;
+  private int age;
+  public Alien(){
+    System.out.println("Alien Object Created..");
+  }
+  public int getAge(){
+    return age;
+  }
+  public void setAge(int age){
+    System.out.println("Age Assigned");
+    this.age=age;
+  }
+
+  public void code(){
+    System.out.println("Im coding..");
+    laptop.compile();
+  }
 }
+
+
+ getters and setters of laptop
+
 
 App.java
 
