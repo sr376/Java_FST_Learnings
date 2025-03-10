@@ -11,6 +11,7 @@ public class Alien {
         System.out.println("I'm Coding..");
     }
 }
+.
 
 package com.telusko.first;
 Declares the package com.telusko.first, which is like a folder structure in your project.
