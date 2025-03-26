@@ -1,0 +1,66 @@
+A RowMapper in Spring JDBC is an interface (org.springframework.jdbc.core.RowMapper<T>) used to map a row from a SQL ResultSet to a Java object. It is commonly used in JdbcTemplate to convert database query results into Java objects.
+
+Why Use RowMapper?
+Converts ResultSet into Objects
+
+Instead of manually extracting data from a ResultSet, RowMapper automates this process.
+
+Reduces Boilerplate Code
+
+Without RowMapper, you would need to call rs.getString(), rs.getInt(), etc., for every column, which is repetitive.
+
+Enhances Readability and Maintainability
+
+Having a separate RowMapper class makes the code modular and easy to maintain.
+
+Example of RowMapper
+Assume we have an Alien table and a corresponding Java class:
+
+java
+Copy
+Edit
+public class Alien {
+    private int id;
+    private String name;
+    private String tech;
+
+    // Getters and Setters
+}
+Now, we create a RowMapper to map a row from ALIEN table to Alien object:
+
+
+import org.springframework.jdbc.core.RowMapper;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class AlienRowMapper implements RowMapper<Alien> {
+    @Override
+    public Alien mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Alien alien = new Alien();
+        alien.setId(rs.getInt("id"));
+        alien.setName(rs.getString("name"));
+        alien.setTech(rs.getString("tech"));
+        return alien;
+    }
+}
+Using RowMapper in JdbcTemplate
+Now, we can use AlienRowMapper in JdbcTemplate to fetch data:
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+@Repository
+public class AlienRepository {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public AlienRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<Alien> getAllAliens() {
+        String sql = "SELECT * FROM ALIEN";
+        return jdbcTemplate.query(sql, new AlienRowMapper());
+    }
+}
