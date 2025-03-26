@@ -1,0 +1,17 @@
+package com.example.JDBCdemo.model;
+
+import org.springframework.jdbc.core.RowMapper;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import com.example.JDBCdemo.model.Alien;
+
+public class AlienRowMapper implements RowMapper<Alien> {
+    @Override
+    public Alien mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Alien alien = new Alien();
+        alien.setId(rs.getInt("id"));
+        alien.setName(rs.getString("name"));
+        alien.setTech(rs.getString("tech"));
+        return alien;
+    }
+}
