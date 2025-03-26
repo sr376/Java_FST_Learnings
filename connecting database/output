@@ -1,0 +1,41 @@
+Your log output shows that your Spring Boot JDBC application is working correctly. Here's a breakdown of what’s happening:
+
+Application Startup
+
+The application starts using Java 23.0.1.
+
+No active profile is set, so it falls back to the default profile.
+
+HikariCP (the connection pool) is initializing.
+
+Database Connection
+
+HikariCP starts and successfully adds a connection to an in-memory H2 database (jdbc:h2:mem:e6c4509a-82db-45bd-bc6a-eb2999725b8e).
+
+Data Insert and Retrieval
+
+The application adds a new Alien record:
+
+bash
+Copy
+Edit
+Added: Alien{id=111, name='srujan', tech='java'}
+It retrieves and prints all the existing records:
+
+bash
+Copy
+Edit
+[Alien{id=101, name='vivek', tech='chain'}, 
+ Alien{id=102, name='srujan', tech='java'}, 
+ Alien{id=103, name='teja', tech='python'}, 
+ Alien{id=111, name='srujan', tech='java'}]
+Application Shutdown
+
+HikariCP initiates and completes the shutdown.
+
+Possible Checks
+If the database is resetting after each run, check if you want a persistent database instead of H2 in-memory.
+
+If you expect more records, ensure that the data source isn't being reset on application restart.
+
+If unintended duplicates appear, verify that your insert logic doesn’t insert the same data multiple times.
