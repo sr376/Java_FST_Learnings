@@ -1,6 +1,0 @@
-when we put index.jsp and result.jsp in view folder
-
-To config we have to add in application.properties
-
-spring.mvc.view.prefix= /views/
-spring.mvc.view.suffix= .jsp
