@@ -15,3 +15,42 @@ public class HomeController
   }
 }
 
+SpringMVC req param : 
+
+public class HomeController
+{
+  @RequestMapping("/")
+  public String home(){
+    return "index.jsp";
+  }
+  @RequestMapping("add")
+  public String add(@RequestParam("num1") int i,@RequestParam("num2") int j, HttpSession session){
+    int num3 = i+j;
+   
+    session.setAttribute("num3", num3);
+    return "result.jsp";
+  }
+}
+
+Spring MVC Model and View
+
+public class HomeController
+{
+  @RequestMapping("/")
+  public String home(){
+    return "index.jsp";
+  }
+  @RequestMapping("add")
+  public String add(@RequestParam("num1") int i,@RequestParam("num2") int j){
+    ModelAndView mv = new ModelAndView();
+    mv.setViewName("result.jsp");
+    int num3 = i+j;
+   
+    mv.addObject("num3", num3);
+    return mv;
+  }
+}
+
+
+
+  
