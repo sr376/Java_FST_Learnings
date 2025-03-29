@@ -1,0 +1,24 @@
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+public class HomeController {
+
+    @RequestMapping("/")
+    public String home() {
+        return "index";  // Returns the "index.jsp" view
+    }
+
+    @RequestMapping("add")
+    public String add(@RequestParam("num1") int i, @RequestParam("num2") int j, Model m) {
+        int num3 = i + j;  // Perform addition
+        m.addAttribute("num3", num3);  // Store the result in the Model
+        return "result";  // Returns the "result.jsp" view
+    }
+
+    @PostMapping("addAlien")
+    public String addAlien(@ModelAttribute Alien a) {
+        return "result";  // Returns the "result.jsp" view
+    }
+}
