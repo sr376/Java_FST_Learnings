@@ -1,0 +1,36 @@
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
+
+@Controller
+public class HomeController {
+
+    @ModelAttribute
+    public void modelData(Model m) {
+        m.addAttribute("name", "Aliens");  // Adds "Aliens" as a model attribute
+    }
+
+    @RequestMapping("/")
+    public String home() {
+        return "index";  // Returns the "index.jsp" view
+    }
+
+    @GetMapping("getAliens")
+    public String getAliens(Model m) {
+        List<Alien> aliens = Arrays.asList(
+                new Alien(101, "Navin"),
+                new Alien(102, "Rose")
+        );  // Creating a list of Alien objects
+
+        m.addAttribute("result", aliens);  // Adds list of aliens to the model
+        return "showAliens";  // Returns "showAliens.jsp" view
+    }
+
+    @PostMapping("addAlien")
+    public String addAlien(@ModelAttribute Alien a) {
+        return "result";  // Returns "result.jsp"
+    }
+}
