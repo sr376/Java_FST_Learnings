@@ -1,0 +1,27 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/aliens")
+public class AlienController {
+
+    @Autowired
+    private AlienRepository repo;
+
+    @GetMapping
+    public List<Alien> getAllAliens() {
+        return repo.findAll();
+    }
+
+    @PostMapping
+    public Alien addAlien(@RequestBody Alien a) {
+        return repo.save(a);
+    }
+
+    @GetMapping("/{id}")
+    public Alien getAlien(@PathVariable int id) {
+        return repo.findById(id).orElse(null);
+    }
+}
